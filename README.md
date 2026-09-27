@@ -4,6 +4,34 @@ Working notes for running the **key-free AZ 1.30 starter** on a Raspberry Pi 4
 (ARM64, native — no QEMU), with a decrypted cabinet, a USB music library, and
 an HDMI monitor.
 
+
+---
+
+## Orange Pi 4 LTS port: current status
+
+This fork currently contains only `README.md` and `setup-az.sh` at commit
+`0db4bbb`. The referenced `az.py`, `controller.py`, `controllers/` and `tools/`
+are **not in this repository**. Cloning it does not provide a runnable AZ
+installation. Do not run `setup-az.sh` yet; its prerequisite files are absent.
+
+On the Orange Pi 4 LTS, run the read-only inventory:
+
+```bash
+bash scripts/preflight.sh
+# Once the complete starter source is available elsewhere:
+AZ_SOURCE_DIR=/path/to/complete-starter bash scripts/preflight.sh
+```
+
+The preflight prints architecture, kernel, page size, board, tools, loaders,
+DRM, ALSA and USB devices. It never mounts, installs or prints key contents.
+For the porting matrix, gaps and acceptance criteria, see
+[docs/matriz-portabilidade.md](docs/matriz-portabilidade.md).
+
+The first integration target is the Orange Pi 4 LTS with Armbian ARM64. QEMU
+can test isolated software logic once `az.py` is available, but the generic
+ARM64 `virt` machine does not emulate the RK3399 video, audio or GPIO. A
+Raspberry Pi 3 is optional for a Pi-specific reproduction, not a requirement.
+
 ---
 
 ## Hardware
