@@ -1,0 +1,9 @@
+az-key.conf
+*.UPD
+*.img
+local/
+decrypted-cabinet/
+az-keys-from-unit/
+upstream/
+*.pem
+*.key
