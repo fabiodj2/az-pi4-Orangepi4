@@ -23,3 +23,18 @@ Criar adaptador configurável para paths, X server e ALSA; `doctor` com relatór
 ## Fonte localizada
 
 `https://github.com/xsploit/az-starter` no commit `9a2108a70ca8cdef08988be22add5a469d678d35` contém `az.py`, `controller.py`, `shims/`, `tools/`, testes, `LICENSE` e `PROVENANCE.md`. A documentação upstream afirma ARM64 nativo, execução silenciosa e cabinet opcional para startup limitado. Isto ainda não comprova compatibilidade Orange Pi nem áudio DJ.
+
+## Resultado no hardware do usuário — 27/09/2026
+
+Orange Pi 4 LTS, Armbian Debian 13, kernel 6.18.44-current-rockchip64,
+ARM64 e páginas de 4096 bytes. O `xsploit/az-starter` no commit `9a2108a`
+foi clonado em `upstream/` (ignorado pelo Git). `python3 az.py deps --install`
+instalou `bubblewrap`, `python3-venv` e `xvfb`. `python3 az.py build`
+compilou `offline-audio-paced.so`, `offline-midi.so`, `offline-usb-fixture.so`
+e `sem-owner.so`; `file` identificou todos como ELF 64-bit ARM aarch64.
+ALSA apresenta a DDJ-400 como card 2. Isto valida a compilação dos shims,
+sem validar execução do player, áudio audível ou MIDI. O cartão ext4 tem 3,8 GB
+livres; a entrada de firmware/rootfs ainda não foi identificada. Não executar
+`setup` antes de obter ao menos 12 GB livres em armazenamento Linux separado.
+O `sda2` é um pendrive vfat de 16 GB montado pelo projeto RX3 e não deve ser
+reaproveitado para estado do AZ.
