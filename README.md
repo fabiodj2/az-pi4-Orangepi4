@@ -9,8 +9,8 @@ an HDMI monitor.
 
 ## Orange Pi 4 LTS port: current status
 
-This fork currently contains only `README.md` and `setup-az.sh` at commit
-`0db4bbb`. The referenced `az.py`, `controller.py`, `controllers/` and `tools/`
+This fork began with only `README.md` and `setup-az.sh` at commit
+`0db4bbb`; it now also contains port diagnostics and documentation. The referenced `az.py`, `controller.py`, `controllers/` and `tools/`
 are **not in this repository**. Cloning it does not provide a runnable AZ
 installation. Do not run `setup-az.sh` yet; its prerequisite files are absent.
 
@@ -96,6 +96,11 @@ setup commands cannot run from a clean clone of this fork. Do not type
 angle brackets as input redirection. Likewise, `/path/to/cabinet.img`,
 `<pi-ip>`, and `/media/drclab/128 GB` in older notes are examples, not paths
 verified on your Orange Pi.
+
+The term **key-free starter** means no key is bundled. It does not mean that
+the official `.UPD` can be decrypted without a private key configuration.
+The code in `extract.py` requires `--key-config` for non-ISO inputs. An
+already-extracted rootfs or verified ISO/CPIO follows another input path.
 
 The complete public starter is [xsploit/az-starter](https://github.com/xsploit/az-starter),
 verified at commit `9a2108a70ca8cdef08988be22add5a469d678d35` (MIT starter glue;
