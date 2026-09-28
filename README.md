@@ -87,36 +87,37 @@ as a window on the desktop and can be fullscreened with **Ctrl+Shift+F**.
 
 ---
 
-## Full setup — from scratch
+## Setup status for this fork
+
+**Stop here after `bash scripts/preflight.sh`.** This repository does not contain
+`az.py`. The firmware and cabinet inputs are also not included. The original
+setup commands cannot run from a clean clone of this fork. Do not type
+`git clone <repo-url>`: `<repo-url>` was a placeholder, and the shell treats
+angle brackets as input redirection. Likewise, `/path/to/cabinet.img`,
+`<pi-ip>`, and `/media/drclab/128 GB` in older notes are examples, not paths
+verified on your Orange Pi.
+
+The port can continue once the complete starter source (including `az.py` and
+its shims) is identified. Point the read-only inventory at that source:
 
 ```bash
-# 1. Clone the starter
-git clone <repo-url> ~/az-starter
-cd ~/az-starter
-
-# 2. Confirm inputs are present
-ls -la XDJAZv130.UPD az-key.conf
-
-# 3. Install host prerequisites
-python3 az.py deps
-sudo apt-get install -y cryptsetup-bin ffmpeg xxd x11-utils
-
-# 4. Extract firmware and build shims
-python3 az.py setup --firmware "XDJAZv130.UPD" --key-config "az-key.conf"
-
-# 5. Import a decrypted cabinet (image file or directory)
-python3 az.py cabinet --cabinet "/path/to/decrypted/cabinet.img"
-
-# 6. Verify
-python3 az.py doctor
+AZ_SOURCE_DIR=/actual/path/to/complete-starter bash scripts/preflight.sh
 ```
 
-After a successful cabinet import, `doctor` **stops printing**
-`LIMITED STARTUP: ...`. That is the indicator the cabinet was accepted.
+Until then, **do not run any `python3 az.py ...` commands below**. Installing
+`xserver-xephyr` only installs a nested X server; it cannot create the missing
+AZ launcher or start display `:1` by itself.
 
 ---
 
-## Running AZ on HDMI
+## Historical Raspberry Pi reference (not runnable from this fork)
+
+The sections below describe a complete starter installation that is **not**
+checked into this repository. They are reference material, not an Orange Pi
+runbook. Commands require the missing `az.py`, appropriate inputs, and a
+working X session.
+
+### Running AZ on HDMI
 
 ### With a USB library (recommended)
 
