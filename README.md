@@ -97,14 +97,26 @@ angle brackets as input redirection. Likewise, `/path/to/cabinet.img`,
 `<pi-ip>`, and `/media/drclab/128 GB` in older notes are examples, not paths
 verified on your Orange Pi.
 
-The port can continue once the complete starter source (including `az.py` and
-its shims) is identified. Point the read-only inventory at that source:
+The complete public starter is [xsploit/az-starter](https://github.com/xsploit/az-starter),
+verified at commit `9a2108a70ca8cdef08988be22add5a469d678d35` (MIT starter glue;
+third-party components retain their own licenses). Clone it separately into
+this fork's ignored `upstream/` directory and pin the audited revision:
 
 ```bash
-AZ_SOURCE_DIR=/actual/path/to/complete-starter bash scripts/preflight.sh
+cd ~/az-pi4-Orangepi4
+git clone https://github.com/xsploit/az-starter.git upstream
+(cd upstream && git checkout 9a2108a70ca8cdef08988be22add5a469d678d35)
+bash scripts/preflight.sh
 ```
 
-Until then, **do not run any `python3 az.py ...` commands below**. Installing
+If `upstream/` already exists, inspect it before cloning. The command above
+retrieves source only; it does not install dependencies or run the player.
+The upstream README offers three setup inputs: an already extracted rootfs,
+an official UPD plus a private key config, or a decrypted ISO/CPIO. A decrypted
+cabinet is optional for limited startup; its absence prevents a validated full
+Source/library path. These inputs are not supplied by either repository.
+
+Until an input is available and the source has been reviewed, **do not run the historical `python3 az.py ...` commands below**. Installing
 `xserver-xephyr` only installs a nested X server; it cannot create the missing
 AZ launcher or start display `:1` by itself.
 
