@@ -18,6 +18,8 @@ warn() { printf '\n\033[1;33m!! %s\033[0m\n'  "$*"; }
 die()  { printf '\n\033[1;31mXX %s\033[0m\n'  "$*"; exit 1; }
 
 cd "$PROJECT_DIR" || die "Project dir not found: $PROJECT_DIR"
+[ -f "$PROJECT_DIR/az.py" ] || die "az.py is not in this fork. Use the complete starter under upstream/ and follow its README; this legacy Pi script is not an Orange Pi installer."
+
 
 # ---------- 1. Host dependencies ----------
 log "Installing host prerequisites"
