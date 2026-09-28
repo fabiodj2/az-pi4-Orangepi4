@@ -38,3 +38,14 @@ livres; a entrada de firmware/rootfs ainda não foi identificada. Não executar
 `setup` antes de obter ao menos 12 GB livres em armazenamento Linux separado.
 O `sda2` é um pendrive vfat de 16 GB montado pelo projeto RX3 e não deve ser
 reaproveitado para estado do AZ.
+
+## Validação adicional no HD externo
+
+O HD USB `AZ-DATA` foi formatado em ext4 e montado em `/mnt/az-data` por UUID,
+com aproximadamente 52 GB livres; o starter e os quatro shims foram copiados
+para `/mnt/az-data/az-starter`. O ZIP oficial AZ 1.30 foi extraído no Mac e o
+`XDJAZv130.UPD` copiado ao HD: SHA-256 em ambos os lados
+`0494b5fb59c799b9e930630ddaba3a162f0b36c08ec5e834c094530e2b74b629`.
+Um Xvfb isolado em `:77` respondeu com 1280×800 e um teste de `bubblewrap`
+terminou com status 0. Estes resultados validam apenas os pré-requisitos do
+host. Não houve extração do UPD, importação de cabinet ou execução de EP147.
